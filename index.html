@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head lang="hu">
+    <meta charset="utf-8">
+    <title>Varázslatos katakomba</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <div id="start">
+      <h1>Kezdőképernyő</h1>
+      <input type="number" id="playerCounter" value="2" min="2" max="4">
+      <input type="number" id="cardCounter" value="2" min="2" max="24">
+      <button type="button" id="startBtn">Start</button>
+      <button type="button" id="desBtn">Leírás</button>
+    </div>
+    <div id="description">
+      <h2>Leírás</h2>
+      <p>A katakomba szobáit egy 7x7-es négyzetrács cellái jelképezik. Minden szobában adott, hogy hány falán van ajtó. Ha két szomszédos szoba érintkező falán egy-egy ajtó van, akkor át lehet menni egyik szobából a másikba. A négyzetrács páros sorait és oszlopait el lehet tolni, a többi szoba végig rögzített a játék során. Az eltolásokkal az ajtókon keresztül utak nyílnak a szobák között, így lehet eljutni a kincsekhez. Mindegyik kérő arra törekszik, hogy a katakomba szobáinak ötletes eltolásával eljusson a kincsekhez. Aki elsőként találja meg mindahányat és kiindulópontjára sikeresen visszaérkezik az a nyertes.</p>
+      <p>A játék elején a szobákat véletlen sorrendben és véletlen irányban kirakjuk a játéktábla szabad mezőire. A szobák közül az egyik mindenképpen fölösleges marad. A játék folyamán majd mindig az éppen kimaradó szobát használjuk a többi szoba elcsúsztatására. A játékban legfeljebb 24 kincset kell megtalálni. Ezeket véletlen sorrendben felrakjuk a táblára úgy, hogy egy mezőn csak egy kincs lehet, és a sarokba nem rakhatunk, majd az ezeket jelző kártyákat összekeverjük, és egyenlő számban szétosztjuk a játékosok között, felfedve mindig a legfelső kártyát. A játékosokat jelző figurákat a tábla külön sarkaiba helyezzük.</p>
+      <p>A játék során minden játékosnak a kincsei közül azt kell megszereznie, amit az aktuálisan legfelső, mindenki által látható kincskártya mutat. Arra a mezőre kell eljutni. Ahhoz, hogy a célt elérje, a játékosnak</p>
+      <ol>
+        <li>először a katakombát kell átalakítania a kimaradt szoba becsúsztatásával, és</li>
+        <li>lépnie mindig csak ez után szabad a figurájával.</li>
+      </ol>
+      <p>A katakomba átalakítása a következőképpen történik: A játékos a kimaradt szobát valamelyik oldalról becsúsztathatja a játéktábla területére egy szabadon mozgó sor vagy oszlop szélén, aminek következtében az átellenes oldalon kiesik egy másik szoba. A tábla szélén nyilak jelzik azokat a helyeket, ahol a szobát be lehet csúsztatni. A szoba bárhol betolható, kivétel ott, ahol az imént kilökődött. Nem szabad tehát az előző játékos lépését rögtön „visszacsinálni". Ha a szobák eltolása során a szobával együtt egy figura is kitolódnék – akár másé, akár a miénk -, akkor ezt a figurát az ellenkező oldalról imént becsúsztatott szobába kell helyezni.</p>
+      <p>A szobák eltolását követi a játékos lépése a figurával. A katakomba minden olyan pontjáig el lehet jutni, amelyet a kiindulóponttal folyamatos járatvonal köt össze. Az ilyen járatokban tehát olyan messzire mehetünk el, amilyen messzire csak akarunk, vagyis nem számít, hogy hány szobán lépkedünk végig. Nem kötelező lépni. Figuránkat akár ott is hagyhatjuk, ahol éppen van. Egy mezőn több figura is állhat: a figurák nem ütik ki egymást. Ha valaki nem tud rögtön céljáig eljutni, akkor figurájával addig a pontig célszerű elmennie, ahol feltehetőleg jó helyzetben várhatja következő lépést. Ha valaki elérte a felfedett kincskártya által megjelölt célt, akkor felfedi a következőt, és most ehhez a célhoz igyekszik eljutni, stb.</p>
+      <p>
+        A játék akkor ér véget, ha egy játékos az összes kincskártyájához tartozó kincset megszerezte, és visszavezette a figuráját arra mezőre, ahonnan elindult. Az a győztes, aki valamennyi kincsét megtalálta és figuráját elsőként juttatta vissza a kiindulópontra.
+      </p>
+    </div>
+    <div id="game">
+      <div id="canvases">
+        <canvas id="board">A bögésződ nem támogatja a canvast!</canvas>
+        <canvas id="leftover"></canvas>
+      </div>
+      <div id="button_container">
+        <button type="button" id="new_game">Új játék</button>
+      </div>
+      <p id="phaseText"></p>
+      <div id="players_container">
+        <div id="player1" class="flexed" hidden>
+          <h2>Kék játékos</h2>
+          <p>Hátralevő kincsek = 0</p>
+          <canvas id="blue_tresure" width="15" height="20"></canvas>
+        </div>
+        <div id="player2" class="flexed" hidden>
+          <h2>Piros játékos</h2>
+          <p>Hátralevő kincsek = 0</p>
+          <canvas id="red_tresure" width="15" height="20"></canvas>
+        </div>
+        <div id="player3"class="flexed"  hidden>
+          <h2>Zöld játékos</h2>
+          <p>Hátralevő kincsek = 0</p>
+          <canvas id="green_tresure" width="15" height="20"></canvas>
+        </div>
+        <div id="player4" class="flexed"  hidden>
+          <h2>Sárga játékos</h2>
+          <p>Hátralevő kincsek = 0</p>
+          <canvas id="yellow_tresure" width="15" height="20"></canvas>
+        </div>
+      </div>
+    </div>
+    <div id="resources">
+      <img src="images/turn.svg" id="turn" hidden>
+      <img src="images/straight.svg" id="straight" hidden>
+      <img src="images/fork.svg" id="fork" hidden>
+      <img src="images/side_arrow.svg" id="side_arrow" hidden>
+      <img src="images/upper_arrow.svg" id="upper_arrow" hidden>
+      <img src="images/blue_player.svg" id="blue_player" hidden>
+      <img src="images/green_player.svg" id="green_player" hidden>
+      <img src="images/red_player.svg" id="red_player" hidden>
+      <img src="images/yellow_player.svg" id="yellow_player" hidden>
+    </div>
+
+
+    <script src="menu.js"></script>
+    <script src="game.js"></script>
+    
+  </body>
+</html>

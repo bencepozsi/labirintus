@@ -1,0 +1,61 @@
+html{
+    height: 100%;
+}
+
+body{
+    user-select: none;
+    background-color: #f9ea8f;
+background-image: linear-gradient(315deg, #f9ea8f 0%, #aff1da 74%);
+}
+
+h1{
+    text-align: center;
+}
+
+#start{
+    width: 231px;
+    margin: auto;
+}
+
+#description{
+    visibility: hidden;
+}
+
+#game{
+    visibility: hidden;
+    display: none;
+}
+
+canvas{
+    cursor: pointer;
+}
+
+#players_container{
+    display: flex;
+    flex-wrap: nowrap;
+    border: 1px solid black;
+    min-height: 170px;
+    background-color: #abe9cd;
+    font-size: larger;
+}
+
+.flexed{
+    flex: 1 0 20%;
+    height: 50px;
+    text-align: center;
+}
+
+#canvases{
+    width: 550px;
+    margin: auto;
+}
+
+#button_container{
+    width: 550px;
+    margin: auto;
+}
+
+#phaseText{
+    text-align: center;
+    font-size: larger;
+}
